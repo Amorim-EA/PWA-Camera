@@ -37,8 +37,14 @@ function cameraStart() {
   });
 }
 
+function stopMediaTracks(stream) {
+  stream.getTracks().forEach((track) => {
+    track.stop();
+  });
+}
+
 // Função para tirar foto
-cameraTrigger.onclick= function () {
+cameraTrigger.onclick= function() {
   cameraSensor.width = cameraView.videoWidth;
   cameraSensor.height = cameraView.videoHeight; 
   cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
@@ -46,21 +52,13 @@ cameraTrigger.onclick= function () {
   cameraOutput.classList.add("taken");
 };
 
-
-cameraSwitcher.onclick = function (){
+//Função para trocar de camera frontal/traseira
+cameraSwitcher.onclick = function() {
   stopMediaTracks(cameraView.srcObject);
   camMode = camMode === 'user' ? 'environment' : 'user';
   constraints = { video: { facingMode: camMode }, audio: false };
   cameraStart();
 }
-
-function stopMediaTracks(stream) {
-  stream.getTracks().forEach((track) => {
-    track.stop();
-  });
-
-}
-
 
 // carrega imagem de camera quando a janela carregar 
 window.addEventListener("load", cameraStart, false);
