@@ -1,6 +1,6 @@
 {
-    "name": "Noticias API",
-    "short_name": "newspa",
+    "name": "PWA-Camera",
+    "short_name": "tirar fotos",
     "icons": [
         {
             "src": "./images/camera256.png",
